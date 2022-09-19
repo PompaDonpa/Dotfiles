@@ -165,16 +165,19 @@ setup_shell() {
         info "default shell changed to $zsh_path"
     fi
 
-    title "Installing Zprezto"
-    title "Cloning"
+    title "Installing Zprezto - Cloning"
     sudo git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     echo
-    title "Linking Zprezto"
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-    echo
+    title "Linking Zprezto - Open a new Terminal and copy/paste ⇣⇣⇣ + Enter"
+    echo "setopt EXTENDED_GLOB"
+    echo "for rcfile in "${ZDOTDIR:-$HOME}/.zprezto/runcoms/^README.md(.N)"; do"
+    echo "    ln -s \"$rcfile\" \"${ZDOTDIR:-$HOME}/.${rcfile:t}\""
+    echo "done"
+    warning "Press a key to continue..."
+    read user_continue
+
+    git clone https://github.com/Aloxaf/fzf-tab $ZPREZTODIR/contrib/fzf-tab
+
     title "Installin ZPLUG"
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
@@ -251,36 +254,47 @@ setup_macos() {
     fi
 }
 
+powerLevel() {
+# https://mike632t.wordpress.com/2017/07/06/bash-yes-no-prompt/
+# https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
+
+    title "Once the Installation finish, type : "
+    echo "\n\tp10k configure\n"
+    echo
+    warning "\n\tp10k configure + Enter \n\t    otherwise \n\t ~/Dotfiles/install.sh drip + Enter"
+
+        # echo -e
+        # info "Installing to ~/.cache"
+        #     if [ ! -d "$HOME/.cache" ]; then
+        #         info "Creating ~/.cache";
+        #         mkdir -p "$HOME/.cache";
+        #     fi
+}
+
+dripped() {
+    sudo cp ~/Dotfiles/zsh/config/20-prompt ~/Dotfiles/zsh/config/20-prompt.zsh
+}
+
 prompt() {
     source ~/.zshrc && zplug install;
 
-    printf "Do you want to use powerLevel 10k? [y/N]: "
-    if read -q; then
+    echo -e
 
-        printf "Do you want to CONFIGURE powerLevel 10k? [y/N]: "
-        if read -q; then
-            echo; p10k configure
-        else
-            echo -e
-            info "Installing to ~/.cache"
-            if [ ! -d "$HOME/.cache" ]; then
-                info "Creating ~/.cache"
-                mkdir -p "$HOME/.cache"
-            fi
-    
-            title "COPYING p10k.zsh to ~"
-            cp -rf "~/Dotfiles/resources/p10k.zsh" "$HOME"
-
-            title "COPYING p10k-instant-propmpt to ~/.cache"
-            cp -rf "~/Dotfiles/resources/p10k-instant-prompt-pompadonpa.zsh" "$HOME/.cache"
-        fi
-    else
-        sudo mv "$DOTFILES/zsh/config/20-prompt" "$DOTFILES/zsh/config/20-prompt.zsh"
-    fi
+    while true; do
+        read -p "Do you want to use powerLevel 10k? [y/N]: " yn
+        case $yn in
+            [Yy]* ) powerLevel && break;;
+            [Nn]* ) dripped && break;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
 }
 
 
 case "$1" in
+    drip)
+        dripped
+        ;;
     backup)
         backup
         ;;

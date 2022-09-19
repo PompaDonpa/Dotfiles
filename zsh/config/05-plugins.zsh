@@ -50,7 +50,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load --verbose
+zplug load
 
 # AUTOSUGGESTIONS: Bind UP and DOWN arrow keys for subsstring search.
 if zplug check zsh-users/zsh-history-substring-search; then
@@ -72,7 +72,7 @@ typeset -A plugins
 # zfetch zsh-users/zsh-autosuggestions
 zfetch grigorii-zander/zsh-npm-scripts-autocomplete
 zfetch marzocchi/zsh-notify
-zfetch Aloxaf/fzf-tab
+# zfetch Aloxaf/fzf-tab
 zfetch wfxr/forgit
 
 

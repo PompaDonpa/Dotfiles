@@ -23,7 +23,6 @@ fi
 
 fpath=(
     $DOTFILES/zsh/functions
-    $DOTFILES/bin
     /opt/homebrew/share/zsh/site-functions
     /usr/share/zsh/site-functions
     $fpath

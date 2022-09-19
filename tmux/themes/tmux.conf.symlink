@@ -9,8 +9,15 @@
 #     ░░     ░░         ░░  ░░░░░░░  ░░     ░░
 
 # shell
-set -g default-command /usr/bin/zsh
-set -g default-shell /usr/bin/zsh
+
+if [[ -a /usr/bin/zsh ]]; then
+    set -g default-command /usr/bin/zsh
+    set -g default-shell /usr/bin/zsh
+else
+    set -g default-command /opt/homebrew/bin/zsh
+    set -g default-shell /opt/homebrew/bin/zsh
+fi
+
 
 # screen mode
 set -g default-terminal "screen-256color"
