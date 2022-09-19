@@ -274,6 +274,8 @@ prompt() {
             title "COPYING p10k-instant-propmpt to ~/.cache"
             cp -rf "~/Dotfiles/resources/p10k-instant-prompt-pompadonpa.zsh" "$HOME/.cache"
         fi
+    else
+        sudo mv "$DOTFILES/zsh/config/20-prompt" "$DOTFILES/zsh/config/20-prompt.zsh"
     fi
 }
 
@@ -310,9 +312,9 @@ case "$1" in
         setup_symlinks
         setup_terminfo
         setup_homebrew
-        setup_shell
         setup_git
         setup_macos
+        setup_shell
         prompt
         ;;
     *)

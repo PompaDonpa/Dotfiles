@@ -167,7 +167,6 @@ brew "python@3.9" # Cairo dependency
 brew "readline" # Library for command-line editing
 brew "ripgrep" # Very fast file searcher
 brew "ruby" # Powerful, clean, object-oriented scripting language
-brew "screenfetch" #Generate ASCII art with terminal, shell, and OS info
 brew "shellcheck" # Diagnostics for shell sripts
 brew "sqlite" # Command-line interface for SQLite
 brew "tig" # Git repository browser

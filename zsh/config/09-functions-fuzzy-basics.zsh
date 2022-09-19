@@ -1,5 +1,5 @@
 # ░░▒▒▓▓▓████▓▓▓▒▒░░
-#       BASICS
+#   FUZZY & BASICS
 # ░░▒▒▓▓▓████▓▓▓▒▒░░
 
 #█▓▒░ fd - cd to selected directory
@@ -31,6 +31,12 @@ function ch() {
      from urls order by last_visit_time desc" |
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
+}
+
+#█▓▒░ PORT
+
+function whatsonport () { 
+  echo "$(lsof -n -i4TCP:$1)"
 }
 
 #█▓▒░ VIM

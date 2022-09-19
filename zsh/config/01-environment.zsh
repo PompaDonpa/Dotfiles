@@ -24,7 +24,7 @@ export LANGUAGE=en_US.UTF-8
 export LESSCHARSET=utf-8
 
 #█▓▒░ Custom paths ░▒▓█
-export BAT_CONFIG_PATH="$HOME/Dotfiles/config/bat"
+export BAT_CONFIG_PATH="$DOTFILES/config/bat"
 export GOPATH=$HOME/go-code
 export GOBIN=$GOPATH/bin
 
@@ -55,7 +55,8 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export ANDROID_NDK=~/ANDROID/android-ndk
 export ANDROID_NDK_HOME=~/ANDROID/android-ndk
 
-export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin::$HOME/.dotfiles/share/zsh/plugins/forgit/bin:$HOME/.dotfiles/share/zsh/plugins/git-fuzzy/bin
+export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin
+#::$HOME/.dotfiles/share/zsh/plugins/forgit/bin:$HOME/.dotfiles/share/zsh/plugins/git-fuzzy/bin
 
 
 #█▓▒░ Evals ░▒▓█

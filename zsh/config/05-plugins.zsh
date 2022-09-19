@@ -9,8 +9,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zplug/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zplug/init.zsh"
+if [[ -r "$HOME/.zplug/init.zsh" ]]; then
+  source "$HOME/.zplug/init.zsh"
 fi
 
 autoload -Uz promptinit
@@ -18,26 +18,46 @@ promptinit
 prompt powerlevel10k
 
 #█▓▒░ ZPLUG ░▒▓█
+# zplug "Peltoche/lsd"
+# LSD colorizes the ls output with color and icons
+
+#zplug "zsh-users/zsh-syntax-highlighting", defer:3
+# Fish-like fast/unobtrusive syntax-highlighting for zsh
 
 zplug "plugins/git",   from:oh-my-zsh
+# A tab-completion library for Git
 zplug "plugins/osx",   from:oh-my-zsh
+# Provides a few utilities for macOS
 zplug "clvv/fasd"
+# Offers quick access to files and directories for POSIX shells
 zplug "b4b4r07/enhancd"
-zplug "Peltoche/lsd"
-zplug "zsh-users/zsh-syntax-highlighting" defer:3
-zplug "zsh-users/zsh-autosuggestions"
-zplug "g-plane/zsh-yarn-autocompletions"
+# A next-generation cd command with an interactive filter
+zplug "zsh-users/zsh-autosuggestions", defer:2
+# Fish-like fast/unobtrusive auto-suggestions for zsh
+zplug "zsh-users/zsh-history-substring-search", defer:3
+# Fish-like fast/unobtrusive history-substring-search for zsh
+zplug "g-plane/zsh-yarn-autocompletions", defer:3
+# Adds common aliases and completion for the Yarn package manager
 zplug "romkatv/powerlevel10k", as:theme, depth:1
+# Powerlevel10k theme for zsh with configuration wizard
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh" if:"[[ $OSTYPE == *darwin* ]]"
+# You can run multiple asynchronous jobs, enforce unique jobs 
 
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
+  printf "Install? [y/N]: "
     if read -q; then
-        echo; zplug install
+      echo; zplug install
     fi
 fi
 
 zplug load --verbose
+
+# AUTOSUGGESTIONS: Bind UP and DOWN arrow keys for subsstring search.
+if zplug check zsh-users/zsh-history-substring-search; then
+  zmodload zsh/terminfo
+  bindkey "^[^[[A" history-substring-search-up
+  bindkey "^[^[[B" history-substring-search-down
+fi
 
 #█▓▒░ ZFETCH ░▒▓█
 
@@ -61,7 +81,7 @@ zfetch wfxr/forgit
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+# typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 
 #█▓▒░ FZF ░▒▓█

@@ -13,7 +13,7 @@
 # ░░░░░░░░░░
 #
 
-#█▓▒░ Load Configs
+#█▓▒░ Bootstrapping ░▒▓█
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -21,6 +21,11 @@ fi
 
 ZSH_DISABLE_COMPFIX=true
 
-for config (~/Dotfiles/zsh/config/*.zsh) source $config
+if type broot &>/dev/null
+then
+  source "$HOME/.config/broot/launcher/bash/br"
+fi
 
-source "$HOME/.config/broot/launcher/bash/br"
+#█▓▒░ Load Configs 00 - 21 ░▒▓█
+
+for config (~/Dotfiles/zsh/config/*.zsh) source $config

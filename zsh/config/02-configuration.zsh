@@ -28,12 +28,6 @@ COLOR_YELLOW="\e[1;33m"
 COLOR_WHITE="\e[1;37m"
 COLOR_NONE="\e[0m"
 
-if [ -z "$TMUX" ]; then
-    export TERM=xterm-256color-italic
-else
-    export TERM=tmux-256color
-fi
-
 title() {
     echo -e "\n ${COLOR_PURPLE}$1${COLOR_NONE}"
     echo -e " ${COLOR_GRAY}==============================${COLOR_NONE}\n"
@@ -62,21 +56,26 @@ success() {
     tput bel
 }
 
+#█▓▒░ xterm for Tmux ░▒▓█
+if [ -z "$TMUX" ]; then
+    export TERM=xterm-256color-italic
+else
+    export TERM=tmux-256color
+fi
 
+#█▓▒░ Load Zsh Functions ░▒▓█
 if [[ -d $HOME/Dotfiles/zsh/functions ]]; then
     for func in $HOME/Dotfiles/zsh/functions/*(:t); autoload -U $func
 fi
-
 
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Git Fuzzy
 export GF_GREP_COLOR='1;30;48;5;15'
 
-
+#█▓▒░ Loading Paths ░▒▓█
 prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
