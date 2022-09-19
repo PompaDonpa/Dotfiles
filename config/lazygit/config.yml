@@ -1,0 +1,4 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --features=mantis-shrimp-lite --paging=never
