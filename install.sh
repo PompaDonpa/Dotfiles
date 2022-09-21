@@ -139,6 +139,21 @@ setup_homebrew() {
     echo -e
     info "Installing fzf"
     "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+
+    echo -e 
+    info "Copying NVIM config Files"
+    cp -rf ~/Dotfiles/config/nvim/ ~/.config/nvim
+    yarn global add diagnostic-languageserver
+
+    echo -e
+    success "NVIM Config files ready... \n";             
+    echo
+    info "Open a new terminal and type \n"
+    echo "nvim +PlugInstall \n"
+    warning "Press Enter to continue..."
+    read user_nvim
+
+    # autoload - error -> https://github.com/startup-nvim/startup.nvim/issues/23 
 }
 
 setup_git() {
@@ -276,9 +291,9 @@ prompt() {
     done
 }
 
-cleanup() {
+cleanback() {
     sudo echo -e 
-    title "Cleaning past Installations"
+    title "Cleaning previous Installations"
 
     rm -rf ~/.bashrc ~/.dircolors ~/.gitconfig ~/.gitconfig-local ~/.gitignore-global ~/.rgrc ~/.tmux.conf;
     rm -rf ~/.z ~/.zcompdump ~/.zlogin ~/.zlogout ~/.zprofile ~/.zshenv ~/.zshrc ~/.zplug
@@ -288,8 +303,8 @@ case "$1" in
     drip)
         dripped
         ;;
-    cleanup)
-        cleanup
+    cleanback)
+        cleanback
         ;;
     prompt)
         prompt
@@ -330,7 +345,7 @@ case "$1" in
         setup_shell
         ;;
     *)
-        echo -e $"\nUsage: $(basename "$0") {backup|cleanup|prompt|link|git|homebrew|shell|terminfo|macos|devpod|all}\n"
+        echo -e $"\nUsage: $(basename "$0") {backup|cleanback|prompt|link|git|homebrew|shell|terminfo|macos|devpod|all}\n"
         exit 1
         ;;
 esac

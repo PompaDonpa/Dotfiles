@@ -17,6 +17,10 @@ function fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
+function b16() {
+  eval $( (ls ~/.zplug/repos/chriskempson/base16-shell/scripts) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
 #█▓▒░ Chrome history
 
 function ch() {

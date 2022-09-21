@@ -92,6 +92,7 @@ brew "gnutls" # GNU Transport Layer Security (TLS) Library
 brew "gobject-introspection" # GObject introspection is a middleware layer between C libraries
 brew "gradle" # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "graphite2" # Smart font renderer for non-Roman scripts
+brew "grc" # Colorize logfiles and command output
 brew "grep" # Grep (latest)
 brew "go" # Open source programming language to build simple/reliable/efficient software
 brew "guile" # GNU Ubiquitous Intelligent Language for Extensions
@@ -160,7 +161,7 @@ brew "pixman" # Low-level library for pixel manipulation
 brew "pkg-config" # Manage compile and link flags for libraries
 brew "pnpm" # Fast, disk space efficient package manager
 brew "postgraphile" # GraphQL schema created by reflection over a PostgreSQL schema
-brew "postgresql@9.5" # Object-relational database system
+brew "postgresql@14" # Object-relational database system
 brew "pyenv" # Python version management
 brew "python@3.10" # Interpreted, interactive, object-oriented programming language
 brew "python@3.9" # Cairo dependency

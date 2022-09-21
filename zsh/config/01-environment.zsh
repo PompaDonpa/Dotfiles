@@ -4,7 +4,7 @@
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 #█▓▒░ Preferred text editor ░▒▓█
-export EDITOR=/opt/homebrew/bin/nvim
+export EDITOR="$HOME/.local/bin/lvim"
 export VISUAL=/usr/local/bin/code
 export GIT_EDITOR=/usr/bin/nvim
 
@@ -77,5 +77,13 @@ else
   export LSCOLORS="GxFxCxDxBxegedabagaced" # Dark Terminals
   # export LSCOLORS="ExFxBxDxCxegedabagacad" # Light Terminals
 fi
+
+#█▓▒░ Base16 Shell ░▒▓█
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
+        
+# base16_default
 
 eval "$(direnv hook zsh)"
