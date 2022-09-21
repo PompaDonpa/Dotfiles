@@ -55,7 +55,7 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export ANDROID_NDK=~/ANDROID/android-ndk
 export ANDROID_NDK_HOME=~/ANDROID/android-ndk
 
-export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin
+export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin:$FORGIT_INSTALL_DIR/bin
 #::$HOME/.dotfiles/share/zsh/plugins/forgit/bin:$HOME/.dotfiles/share/zsh/plugins/git-fuzzy/bin
 
 
@@ -69,7 +69,6 @@ fi
 
 # https://unix.stackexchange.com/questions/91937/mac-os-x-dircolors-not-found
 LS_COLORS="$HOME/.dircolors"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 if whence dircolors >/dev/null; then
   export LS_COLORS
   eval "$(dircolors -b)";

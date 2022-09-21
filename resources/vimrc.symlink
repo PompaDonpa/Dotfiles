@@ -86,6 +86,7 @@ vnoremap H <gv
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'

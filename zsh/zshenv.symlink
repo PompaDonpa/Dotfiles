@@ -22,20 +22,14 @@ then
 fi
 
 fpath=(
-    $DOTFILES/zsh/functions
     /opt/homebrew/share/zsh/site-functions
     /usr/share/zsh/site-functions
     $fpath
 )
 
-# Initialize autocomplete
-autoload -Uz compinit add-zsh-hook
-compinit
-
+typeset -aU path
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
-
-typeset -aU path

@@ -1,5 +1,5 @@
 #  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-# ░▓    CONFIGURATION                     ▓
+# ░▓            CONFIGURATION             ▓
 # ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -90,4 +90,9 @@ setopt NO_HUP                    # don't kill background jobs when the shell exi
 setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS
 setopt LOCAL_TRAPS
-setopt PROMPT_SUBST
+# setopt PROMPT_SUBST
+
+#█▓▒░ Loading powerlevel10k ░▒▓█
+autoload -Uz promptinit
+promptinit
+prompt powerlevel10k

@@ -67,7 +67,6 @@ backup() {
     done
 }
 
-
 setup_symlinks() {
     title "Creating symlinks"
 
@@ -100,6 +99,48 @@ setup_symlinks() {
     done
 }
 
+setup_terminfo() {
+    title "Configuring terminfo"
+
+    info "adding tmux.terminfo"
+    sudo tic -x "~/Dotfiles/resources/tmux.terminfo"
+
+    info "adding xterm-256color-italic.terminfo"
+    sudo tic -x "~/Dotfiles/resources/xterm-256color-italic.terminfo"
+    
+}
+
+setup_homebrew() {
+    title "Setting up Homebrew"
+
+    # dscacheutil -q group -a name admin
+
+    if test ! "$(command -v brew)"; then
+        info "Homebrew not installed. Installing."
+        # Run as a login shell (non-interactive) so that the script doesn't pause for user input
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash --login
+        
+        success "Brew Installed \n";             
+        echo
+        warning "Press Enter to continue..."
+        read user_cc
+    fi
+
+    if [ "$(uname)" == "Linux" ]; then
+        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+    fi
+
+    # install brew dependencies from Brewfile
+    brew bundle --file=~/Dotfiles/Brewfile
+
+    # install fzf
+    echo -e
+    info "Installing fzf"
+    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+}
+
 setup_git() {
     title "Setting up Git"
 
@@ -115,83 +156,16 @@ setup_git() {
     git config -f ~/.gitconfig-local user.email "${email:-$defaultEmail}"
     git config -f ~/.gitconfig-local github.user "${github:-$defaultGithub}"
 
-    if [[ "$(uname)" == "Darwin" ]]; then
-        git config --global credential.helper "osxkeychain"
-    else
-        read -rn 1 -p "Save user and password to an unencrypted file to avoid writing? [y/N] " save
-        if [[ $save =~ ^([Yy])$ ]]; then
-            git config --global credential.helper "store"
-        else
-            git config --global credential.helper "cache --timeout 3600"
-        fi
-    fi
-}
-
-setup_homebrew() {
-    title "Setting up Homebrew"
-
-    if test ! "$(command -v brew)"; then
-        info "Homebrew not installed. Installing."
-        # Run as a login shell (non-interactive) so that the script doesn't pause for user input
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash --login
-    fi
-
-    if [ "$(uname)" == "Linux" ]; then
-        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-    fi
-
-    # install brew dependencies from Brewfile
-    brew bundle
-
-    # install fzf
-    echo -e
-    info "Installing fzf"
-    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-}
-
-setup_shell() {
-    title "Configuring shell"
-
-    [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
-    if ! grep "$zsh_path" /etc/shells; then
-        info "adding $zsh_path to /etc/shells"
-        echo "$zsh_path" | sudo tee -a /etc/shells
-    fi
-
-    if [[ "$SHELL" != "$zsh_path" ]]; then
-        chsh -s "$zsh_path"
-        info "default shell changed to $zsh_path"
-    fi
-
-    title "Installing Zprezto - Cloning"
-    sudo git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    echo
-    title "Linking Zprezto - Open a new Terminal and copy/paste ⇣⇣⇣ + Enter"
-    echo "setopt EXTENDED_GLOB"
-    echo "for rcfile in "${ZDOTDIR:-$HOME}/.zprezto/runcoms/^README.md(.N)"; do"
-    echo "    ln -s \"$rcfile\" \"${ZDOTDIR:-$HOME}/.${rcfile:t}\""
-    echo "done"
-    warning "Press a key to continue..."
-    read user_continue
-
-    git clone https://github.com/Aloxaf/fzf-tab $ZPREZTODIR/contrib/fzf-tab
-
-    title "Installin ZPLUG"
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-}
-
-setup_terminfo() {
-    title "Configuring terminfo"
-
-    info "adding tmux.terminfo"
-    sudo tic -x "~/Dotfiles/resources/tmux.terminfo"
-
-    info "adding xterm-256color-italic.terminfo"
-    sudo tic -x "~/Dotfiles/resources/xterm-256color-italic.terminfo"
-    
+    # if [[ "$(uname)" == "Darwin" ]]; then
+    #     git config --global credential.helper "osxkeychain"
+    # else
+    #     read -rn 1 -p "Save user and password to an unencrypted file to avoid writing? [y/N] " save
+    #     if [[ $save =~ ^([Yy])$ ]]; then
+    #         git config --global credential.helper "store"
+    #     else
+    #         git config --global credential.helper "cache --timeout 3600"
+    #     fi
+    # fi
 }
 
 setup_macos() {
@@ -254,21 +228,34 @@ setup_macos() {
     fi
 }
 
+setup_shell() {
+    title "Configuring shell"
+
+    [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
+    if ! grep "$zsh_path" /etc/shells; then
+        info "adding $zsh_path to /etc/shells"
+        echo "$zsh_path" | sudo tee -a /etc/shells
+    fi
+
+    if [[ "$SHELL" != "$zsh_path" ]]; then
+        chsh -s "$zsh_path"
+        info "default shell changed to $zsh_path"
+    fi
+
+    title "Installin ZPLUG"
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+    sudo cp -rf ~/Dotfiles/zsh/functions/* /opt/homebrew/share/zsh/site-functions
+}
+
 powerLevel() {
-# https://mike632t.wordpress.com/2017/07/06/bash-yes-no-prompt/
-# https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
+    # https://mike632t.wordpress.com/2017/07/06/bash-yes-no-prompt/
+    # https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
 
     title "Once the Installation finish, type : "
     echo "\n\tp10k configure\n"
     echo
     warning "\n\tp10k configure + Enter \n\t    otherwise \n\t ~/Dotfiles/install.sh drip + Enter"
-
-        # echo -e
-        # info "Installing to ~/.cache"
-        #     if [ ! -d "$HOME/.cache" ]; then
-        #         info "Creating ~/.cache";
-        #         mkdir -p "$HOME/.cache";
-        #     fi
 }
 
 dripped() {
@@ -279,7 +266,6 @@ prompt() {
     source ~/.zshrc && zplug install;
 
     echo -e
-
     while true; do
         read -p "Do you want to use powerLevel 10k? [y/N]: " yn
         case $yn in
@@ -290,10 +276,23 @@ prompt() {
     done
 }
 
+cleanup() {
+    sudo echo -e 
+    title "Cleaning past Installations"
+
+    rm -rf ~/.bashrc ~/.dircolors ~/.gitconfig ~/.gitconfig-local ~/.gitignore-global ~/.rgrc ~/.tmux.conf;
+    rm -rf ~/.z ~/.zcompdump ~/.zlogin ~/.zlogout ~/.zprofile ~/.zshenv ~/.zshrc ~/.zplug
+}
 
 case "$1" in
     drip)
         dripped
+        ;;
+    cleanup)
+        cleanup
+        ;;
+    prompt)
+        prompt
         ;;
     backup)
         backup
@@ -322,17 +321,16 @@ case "$1" in
         setup_terminfo
         ;;
     all)
+        setup_homebrew
         backup
         setup_symlinks
         setup_terminfo
-        setup_homebrew
         setup_git
         setup_macos
         setup_shell
-        prompt
         ;;
     *)
-        echo -e $"\nUsage: $(basename "$0") {backup|link|git|homebrew|shell|terminfo|macos|devpod|all}\n"
+        echo -e $"\nUsage: $(basename "$0") {backup|cleanup|prompt|link|git|homebrew|shell|terminfo|macos|devpod|all}\n"
         exit 1
         ;;
 esac

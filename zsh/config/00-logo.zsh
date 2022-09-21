@@ -5,35 +5,35 @@ else
     _RAND=`shuf -i1-7 -n1`
 fi
 
-#█▓▒░ Display <PompaDonpa> figlet-ascii banner
+#█▓▒░ Display <Welcome PompaDonpa> figlet-ascii banner
 # https://devhints.io/figlet
 case $_RAND in
 1)
 clear
-echo "PompaDonpa" | figlet -f pepper
+echo "Welkom PompaDonpa" | figlet -f pepper
 ;;
 2)
 clear
-echo "PompaDonpa" | figlet -f cybermedium
+echo "Willkommen PompaDonpa" | figlet -f cybermedium
 ;;
 3)
 clear
-echo "PompaDonpa" | figlet -f stampatello
+echo "Üdvözöljük PompaDonpa" | figlet -f stampatello
 ;;
 4)
 clear
-echo "PompaDonpa" | figlet -f bell
+echo "ようこそ PompaDonpa" | figlet -f bell
 ;;
 5)
 clear
-echo "PompaDonpa" | figlet -f thin
+echo "Welcome PompaDonpa" | figlet -f thin
 ;;
 6)
 clear
-echo "PompaDonpa" | figlet -f rectangles
+echo "Välkommen PompaDonpa" | figlet -f rectangles
 ;;
 7)
 clear
-echo "PompaDonpa" | figlet -f script
+echo "Bienvenido PompaDonpa" | figlet -f script
 ;;
 esac

@@ -3,7 +3,8 @@
 # ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude=.git --exclude=node_modules'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # add color to man pages
@@ -29,7 +30,6 @@ else # macOS `ls`
     colorflag="-G"
 fi
 
-
 #█▓▒░ Themes FZF ░▒▓█
 
 #█▓▒░ JellyX Theme for fzf
@@ -45,9 +45,33 @@ fi
 # '
 
 #█▓▒░ Ayu Mirage Theme for fzf
+# export FZF_DEFAULT_OPTS="
+#  --color=fg:#cbccc6,bg:#1f2430,hl:#707a8c
+#  --color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
+#  --color=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6
+#  --color=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff
+#  --prompt='◉' --pointer='↠▷' --marker='⇶'
+# "
+
+#█▓▒░ 2KAbhishek
 export FZF_DEFAULT_OPTS="
- ${colorflag}=fg:#cbccc6,bg:#1f2430,hl:#707a8c
- ${colorflag}=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
- ${colorflag}=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6
- ${colorflag}=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff
+--layout=reverse
+--info=inline
+--height=80%
+--multi
+--cycle
+--prompt='◉' --pointer='↠▷' --marker='⇶'
+--color='hl:148,hl+:154,prompt:blue,pointer:032,marker:010,bg+:000,gutter:000'
+--margin=1
+--border=rounded
+--preview-window=right:65%
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range=:500 {} || cat {})) || ([[ -d {} ]] && (exa -TFl --group-directories-first --icons --git -L 2 --no-user {} | less)) || echo {} 2> /dev/null | head -200'
+--bind '?:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | clipcopy)'
+--bind 'ctrl-e:execute(nvim-qt {+})'
+--bind 'ctrl-v:execute(code {+})'
+--color=fg:#cbccc6,bg:#1f2430,hl:#707a8c
+--color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
+--color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
 "

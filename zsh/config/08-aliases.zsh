@@ -8,7 +8,7 @@ alias reload!='RELOAD=1 source ~/.zshrc'
 
 # use nvim, but don't make me think about it
 if [[ -n "$(command -v nvim)" ]]; then
-    alias vim="nvim"
+    # alias vim="nvim"
     alias vimu="nvim +PlugUpdate +PlugUpgrade"
     alias vimg="nvim +Ge:"
 fi
@@ -22,10 +22,10 @@ alias .....="cd ../../../.."
 alias sl=ls
 alias al=la
 alias l="exa -abghHliS"
-alias lt="exa --tree --level=2"
+alias lt="exa --tree --level=2 | bat"
 alias la="ls -AF ${colorflag}"
 alias ls="ls ${colorflag}"        # Compact view, show colors
-alias ll="ls -lFh ${colorflag}"
+alias ll="exa -lFh"
 alias l1="ls -1Fh ${colorflag}"
 alias lld="ls -1 | grep ^d"
 alias lsg="exa -ahlT -L=1  -s=extension --git --group-directories-first"
@@ -44,7 +44,7 @@ alias prev='fzf --preview "bat --style=numbers --theme=Dracula --color=always --
 alias grep='grep --color=auto'
 alias gradmin='dscacheutil -q group -a name admin'
 alias grstaff='dscacheutil -q group -a name staff'
-alias df='df -h | bat "--color=auto"' # disk free, in Gigabytes, not bytes
+alias df='df -h | bat --theme=Dracula' # disk free, in Gigabytes, not bytes
 alias du='du -h -c | bat' # calculate disk usage for a folder
 
 #█▓▒░ Scripts
@@ -55,13 +55,32 @@ alias tnord="sudo sed -i -r 's/#n//g' ~/.tmux.conf"
 alias tnova="sudo sed -i -r 's/#%//g' ~/.tmux.conf"
 
 #█▓▒░ HomeBrew
-alias brewdep='brew deps --tree --installed'
-alias brewls='brew list --versions'
+alias brewdep='brew deps --tree --installed | bat'
+alias brewls='brew list --versions | fzf'
 
 #█▓▒░ Git aliases ░▒▓█
 alias gb='git branch -vv'
 alias gaa='git add .'
 alias gbc='git branch'
+
+alias gfa='git forgit add'
+alias gfd='git forgit diff'
+alias gfl='git forgit log'
+alias gfu='git forgit reset_head'
+alias gfgi='git forgit ignore'
+alias gfcf='git forgit checkout_file'
+alias gfcb='git forgit checkout_branch'
+alias gfbd='git forgit branch_delete'
+alias gfct='git forgit checkout_tag'
+alias gfcc='git forgit checkout_commit'
+alias gfrc='git forgit revert_commit'
+alias gfcl='git forgit clean'
+alias gfss='git forgit stash_show'
+alias gfcp='git forgit cherry_pick'
+alias gfr='git forgit rebase'
+alias gfb='git forgit blame'
+alias gfx='git forgit fixup'
+
 alias gpl='git pull'
 alias gpm='git checkout main && git pull origin main'
 alias gps='git push'
@@ -94,9 +113,6 @@ alias game='git commit --amend'
 #█▓▒░ GH cli
 alias ghpri='gh repo create --private --source=. --remote=upstream --push'
 alias ghpub='gh repo create --public --source=. --remote=upstream --push'
-
-#█▓▒░ GITPOD
-export DISPLAY='localhost:0.0'
 
 #█▓▒░ Arcanist aliases  ░▒▓█
 alias af='arc flow'
@@ -151,8 +167,10 @@ alias flush='dscacheutil -flushcache' # Flush your dns cache
 
 #█▓▒░ Applications ░▒▓█
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-alias lpath='echo $PATH | tr ":" "\n" | fzf --layout=reverse --height=80%' 
-alias shells='cat /etc/shells | fzf --layout=reverse --height=80%'
+alias lpath='echo $PATH | tr ":" "\n" | fzf' 
+alias fpath='echo $fpath | tr " " "\n" | fzf' 
+alias shells='cat /etc/shells | fzf'
+alias python=$(command -v python3)
 
 #█▓▒░ Tmux ░▒▓█
 alias ta='tmux attach'
@@ -163,9 +181,6 @@ alias tks='tmux kill-session -t'
 alias tmr='tmux source-file ~/.tmux.conf'
 alias tmux="tmux -u"
 alias tmax="tmux new-session \; split-window -h \; split-window -v \; attach"
-
-#█▓▒░ GRC
-alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' /home/user/.local/share/zsh/plugins/forgit/forgit.plugin.zsh"
 
 if [ -f "/opt/homebrew/bin/grc" ]; then
     alias df="grc df"
@@ -204,9 +219,9 @@ alias nvimrc="nvim ~/.config/nvim/init.vim"
 #█▓▒░ Editor's Choice ░▒▓█
 alias zshrc="$EDITOR ~/.zshrc"
 alias bashrc="$EDITOR ~/.bashrc"
-alias alia="$EDITOR ~/Dotfiles/zsh/config/08-aliases.zsh"
 alias enva="$EDITOR ~/Dotfiles/zsh/config/01-environment.zsh"
-alias prompt="$EDITOR ~/Dotfiles/zsh/config/20-prompt.zsh"
+alias alia="$EDITOR ~/Dotfiles/zsh/config/08-aliases.zsh"
+# alias prompt="$EDITOR ~/Dotfiles/zsh/config/20-prompt.zsh"
 #https://github.com/TomAnthony/itermocil
 alias opt='itermocil' 
 
@@ -224,8 +239,5 @@ alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
-if [[ "$(uname)" == "Darwin" ]]; then
-    alias python=/opt/homebrew/bin/python3
-else
-    alias python=/usr/local/bin/python3
-fi
+local forgit_dir=$FORGIT_INSTALL_DIR'/forgit.plugin.zsh'
+alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' \$forgitdir"
