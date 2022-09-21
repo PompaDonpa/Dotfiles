@@ -2,7 +2,7 @@
 
 brew update
 brew install kdabir/tap/has
-brew install TomAnthony/brews/itermocil
+# brew install TomAnthony/brews/itermocil
 brew install surrealdb/tap/surreal
 
 title "COPYING lazygit config"

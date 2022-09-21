@@ -81,6 +81,7 @@ alias gfr='git forgit rebase'
 alias gfb='git forgit blame'
 alias gfx='git forgit fixup'
 
+alias glg='lazygit'
 alias gpl='git pull'
 alias gpm='git checkout main && git pull origin main'
 alias gps='git push'
@@ -197,9 +198,10 @@ if [ -f "/opt/homebrew/bin/grc" ]; then
 fi
 
 #█▓▒░ PostgreSQL aliases ░▒▓█
-alias posqlon='pg_ctl -D /usr/local/var/postgres start' # Start postgresql server
-alias posqloff='pg_ctl -D /usr/local/var/postgres stop' # Stop postgresql server
-alias posqlres='pg_ctl -D /usr/local/var/postgres restart' # Restart postgresql server
+local psqldir=$(command -v postgres)
+alias posqlon="pg_ctl -D $psqldir start" # Start postgresql server
+alias posqloff="pg_ctl -D $psqldir stop" # Stop postgresql server
+alias posqlres="pg_ctl -D $psqldir restart" # Restart postgresql server
 
 #█▓▒░ Node ░▒▓█
 alias cleanreact='npx react-codemod update-react-imports'
@@ -223,7 +225,7 @@ alias enva="$EDITOR ~/Dotfiles/zsh/config/01-environment.zsh"
 alias alia="$EDITOR ~/Dotfiles/zsh/config/08-aliases.zsh"
 # alias prompt="$EDITOR ~/Dotfiles/zsh/config/20-prompt.zsh"
 #https://github.com/TomAnthony/itermocil
-alias opt='itermocil' 
+# alias opt='itermocil'  # Kitty seems 2b better
 
 #  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # ░▓               DEVELOPER              ▓
@@ -239,5 +241,4 @@ alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
-local forgit_dir=$FORGIT_INSTALL_DIR'/forgit.plugin.zsh'
-alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' \$forgitdir"
+alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' ~/.zplug/repos/wfxr/forgit/forgit.plugin.zsh"

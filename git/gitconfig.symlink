@@ -35,6 +35,7 @@
     pnv = push --no-verify
     co = checkout
     cob = checkout -b
+    cm = commit -m
     s = status --short --branch
     ss  = status
     br = branch -v

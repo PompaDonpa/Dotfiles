@@ -4,9 +4,11 @@
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 #█▓▒░ Preferred text editor ░▒▓█
-export EDITOR="$HOME/.local/bin/lvim"
-export VISUAL=/usr/local/bin/code
-export GIT_EDITOR=/usr/bin/nvim
+local nvimdir=$(command -v nvim)
+local codedir=$(command -v code)
+export EDITOR="$nvimdir"
+export VISUAL="$codedir"
+export GIT_EDITOR="$nvimdir"
 
 #█▓▒░ Custom Config ░▒▓█
 export DISPLAY='localhost:0.0'

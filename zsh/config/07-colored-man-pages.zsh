@@ -36,12 +36,17 @@ fi
 # export FZF_DEFAULT_OPTS='
 # --color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229
 # --color info:150,prompt:110,spinner:150,pointer:167,marker:174
+# --bind 'ctrl-a:select-all'
+# --bind 'ctrl-v:execute(code {+})'
 # '
 
 #█▓▒░ Nord Theme for fzf
 # export FZF_DEFAULT_OPTS='
 # --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
 # --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
+# --bind 'ctrl-a:select-all'
+# --bind 'ctrl-v:execute(code {+})'
+# --bind 'ctrl-s:execute(nvim {+})'
 # '
 
 #█▓▒░ Ayu Mirage Theme for fzf
@@ -53,6 +58,8 @@ export FZF_DEFAULT_OPTS="
  --prompt='◉' --pointer='↠▷' --marker='⇶'
 --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
 --bind 'ctrl-a:select-all'
+--bind 'ctrl-v:execute(code {+})'
+--bind 'ctrl-s:execute(nvim {+})'
 "
 
 #█▓▒░ 2KAbhishek
@@ -73,6 +80,7 @@ export FZF_DEFAULT_OPTS="
 # --bind 'ctrl-y:execute-silent(echo {+} | clipcopy)'
 # --bind 'ctrl-e:execute(nvim-qt {+})'
 # --bind 'ctrl-v:execute(code {+})'
+# --bind 'ctrl-s:execute(nvim {+})'
 # --color=fg:#cbccc6,bg:#1f2430,hl:#707a8c
 # --color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
 # --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
