@@ -134,26 +134,6 @@ setup_homebrew() {
 
     # install brew dependencies from Brewfile
     brew bundle --file=~/Dotfiles/Brewfile
-
-    # install fzf
-    echo -e
-    info "Installing fzf"
-    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-
-    echo -e 
-    info "Copying NVIM config Files"
-    cp -rf ~/Dotfiles/config/nvim/ ~/.config/nvim
-    yarn global add diagnostic-languageserver
-
-    echo -e
-    success "NVIM Config files ready... \n";             
-    echo
-    info "Open a new terminal and type \n"
-    echo "nvim +PlugInstall \n"
-    warning "Press Enter to continue..."
-    read user_nvim
-
-    # autoload - error -> https://github.com/startup-nvim/startup.nvim/issues/23 
 }
 
 setup_git() {
@@ -261,19 +241,20 @@ setup_shell() {
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
     sudo cp -rf ~/Dotfiles/zsh/functions/* /opt/homebrew/share/zsh/site-functions
+    sudo cp -rf ~/Dotfiles/tmux/.tmux.conf ~
 }
 
-powerLevel() {
+power_level() {
     # https://mike632t.wordpress.com/2017/07/06/bash-yes-no-prompt/
     # https://www.shellhacks.com/yes-no-bash-script-prompt-confirmation/
 
-    title "Once the Installation finish, type : "
+    title "Once the Installation finishes, type : "
     echo "\n\tp10k configure\n"
     echo
-    warning "\n\tp10k configure + Enter \n\t    otherwise \n\t ~/Dotfiles/install.sh drip + Enter"
+    warning "\n\tp10k configure + Enter \n\t    otherwise \n\t ~/Dotfiles/install.sh simple_prompt + Enter"
 }
 
-dripped() {
+simple_prompt() {
     sudo cp ~/Dotfiles/zsh/config/20-prompt ~/Dotfiles/zsh/config/20-prompt.zsh
 }
 
@@ -284,27 +265,52 @@ prompt() {
     while true; do
         read -p "Do you want to use powerLevel 10k? [y/N]: " yn
         case $yn in
-            [Yy]* ) powerLevel && break;;
-            [Nn]* ) dripped && break;;
+            [Yy]* ) power_level && break;;
+            [Nn]* ) simple_prompt && break;;
             * ) echo "Please answer yes or no.";;
         esac
     done
 }
 
-cleanback() {
+undo() {
     sudo echo -e 
     title "Cleaning previous Installations"
 
     rm -rf ~/.bashrc ~/.dircolors ~/.gitconfig ~/.gitconfig-local ~/.gitignore-global ~/.rgrc ~/.tmux.conf;
     rm -rf ~/.z ~/.zcompdump ~/.zlogin ~/.zlogout ~/.zprofile ~/.zshenv ~/.zshrc ~/.zplug
+    echo
+    success "Cleaning completed..."
 }
 
+finalize() {
+    # Install fzf with options
+    echo -e
+    info "Installing fzf with [ key-binding, completion, no-update-rc, no-bash, no-fish ]"
+    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+
+    echo -e 
+    info "Copying NVIM config Files"
+    cp -rf ~/Dotfiles/config/nvim/ ~/.config/nvim
+    yarn global add diagnostic-languageserver
+    echo
+    success "NVIM Config files ready... \n";             
+    echo
+    info "Open a new terminal and type \n"
+    echo "nvim +PlugInstall"
+    echo
+    warning "Press Enter to continue..."
+    read user_nvim
+
+    # autoload - error -> https://github.com/startup-nvim/startup.nvim/issues/23 
+
+}
+
+
 case "$1" in
-    drip)
-        dripped
-        ;;
-    cleanback)
-        cleanback
+    devpod)
+        backup
+        setup_symlinks
+        setup_terminfo
         ;;
     prompt)
         prompt
@@ -312,17 +318,11 @@ case "$1" in
     backup)
         backup
         ;;
-    link)
-        setup_symlinks
-        ;;
-    git)
-        setup_git
-        ;;
     homebrew)
         setup_homebrew
         ;;
-    shell)
-        setup_shell
+    git)
+        setup_git
         ;;
     terminfo)
         setup_terminfo
@@ -330,22 +330,27 @@ case "$1" in
     macos)
         setup_macos
         ;;
-    devpod)
-        backup
+    link)
         setup_symlinks
-        setup_terminfo
         ;;
-    all)
-        setup_homebrew
-        backup
-        setup_symlinks
-        setup_terminfo
-        setup_git
-        setup_macos
+    shell)
         setup_shell
         ;;
+    extras)
+        finalize
+        ;;
+    all)
+        backup
+        setup_homebrew
+        setup_git
+        setup_terminfo
+        setup_macos
+        setup_symlinks
+        setup_shell
+        finalize
+        ;;
     *)
-        echo -e $"\nUsage: $(basename "$0") {backup|cleanback|prompt|link|git|homebrew|shell|terminfo|macos|devpod|all}\n"
+        echo -e $"\nUsage: $(basename "$0") {backup|link|git|homebrew|shell|terminfo|macos|extras|all}\n"
         exit 1
         ;;
 esac

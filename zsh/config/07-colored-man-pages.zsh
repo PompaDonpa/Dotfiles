@@ -38,6 +38,7 @@ fi
 # --color info:150,prompt:110,spinner:150,pointer:167,marker:174
 # --bind 'ctrl-a:select-all'
 # --bind 'ctrl-v:execute(code {+})'
+# --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 # '
 
 #█▓▒░ Nord Theme for fzf
@@ -47,6 +48,7 @@ fi
 # --bind 'ctrl-a:select-all'
 # --bind 'ctrl-v:execute(code {+})'
 # --bind 'ctrl-s:execute(nvim {+})'
+# --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 # '
 
 #█▓▒░ Ayu Mirage Theme for fzf
@@ -60,6 +62,7 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-a:select-all'
 --bind 'ctrl-v:execute(code {+})'
 --bind 'ctrl-s:execute(nvim {+})'
+--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 "
 
 #█▓▒░ 2KAbhishek
@@ -77,7 +80,7 @@ export FZF_DEFAULT_OPTS="
 # --preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range=:500 {} || cat {})) || ([[ -d {} ]] && (exa -TFl --group-directories-first --icons --git -L 2 --no-user {} | less)) || echo {} 2> /dev/null | head -200'
 # --bind '?:toggle-preview'
 # --bind 'ctrl-a:select-all'
-# --bind 'ctrl-y:execute-silent(echo {+} | clipcopy)'
+# --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
 # --bind 'ctrl-e:execute(nvim-qt {+})'
 # --bind 'ctrl-v:execute(code {+})'
 # --bind 'ctrl-s:execute(nvim {+})'
@@ -85,3 +88,8 @@ export FZF_DEFAULT_OPTS="
 # --color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
 # --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
 # "
+
+
+#█▓▒░ Notes
+# Using pbcopy - Darwin
+# Using xclip - Debian

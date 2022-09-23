@@ -6,6 +6,7 @@ if OS.mac?
     # Applications
     brew "bpytop" # Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
     brew "diff-so-fancy" # Good-lookin' diffs with diff-highlight and more
+    brew "fzf" # Fuzzy file searcher, used in scripts and in vim
     brew "trash" # rm, but put in the trash rather than completely delete
     brew "screenresolution" # Get, set, and list display resolution
     
@@ -26,6 +27,7 @@ if OS.mac?
     cask "quicklook-csv" # QuickLook plugin for CSV files
     cask "raycast" # Control your tools with a few keystrokes
     cask "rectangle" # Move and resize windows using keyboard shortcuts or snap areas
+    cask "spotify" # Music streaming service
     cask "suspicious-package" # Application for inspecting installer packages
     cask "superduper" # Backup, recovery and cloning software
     cask "temurin" # JDK from the Eclipse Foundation (Adoptium)
@@ -77,13 +79,13 @@ brew "fnm" # Fast Node version manager
 brew "fontconfig" # Fontconfig is a library for configuring and customizing font access
 brew "freetype" # Software library to render fonts
 brew "fribidi" # The Free Implementation of the Unicode Bidirectional Algorithm.
-# brew "fzf" # Fuzzy file searcher, used in scripts and in vim
 brew "gdbm" # GNU database manager
 brew "gdk-pixbuf" # Toolkit for image loading and pixel buffer manipulation
 brew "gettext" # GNU internationalization (i18n) and localization (l10n) library
 brew "gh" # GitHub CLI
 brew "giflib" # Library and utilities for processing GIFs
 brew "git" # Git version control (latest version)
+brew "git-delta" # Syntax-highlighting pager for git and diff output
 brew "glib" # Core application library for C
 brew "glow" # Render markdown on the CLI
 brew "gmp" # GNU multiple precision arithmetic library
@@ -169,6 +171,7 @@ brew "readline" # Library for command-line editing
 brew "ripgrep" # Very fast file searcher
 brew "ruby" # Powerful, clean, object-oriented scripting language
 brew "shellcheck" # Diagnostics for shell sripts
+brew "spotifyd" # Spotify daemon
 brew "sqlite" # Command-line interface for SQLite
 brew "tig" # Git repository browser
 brew "tmux" # Terminal multiplexer
@@ -184,3 +187,7 @@ brew "xorgproto" # X.Org: Protocol Headers
 brew "xz" # General-purpose data compression with high compression ratio
 brew "z" # Tracks most-used directories to make cd smarter
 brew "zsh" # Zsh (latest)
+
+
+#█▓▒░ Notes
+# Not installing nvm - fnm is faster

@@ -12,6 +12,8 @@ export GIT_EDITOR="$nvimdir"
 
 #█▓▒░ Custom Config ░▒▓█
 export DISPLAY='localhost:0.0'
+export GATEWAY="$DOTFILES/applescripts/gateway.applescript"
+export LG_CONFIG_FILE="$DOTFILES/config/lazygit/config.yml" lazygit
 
 #█▓▒░ Language ░▒▓█
 export LC_COLLATE=en_US.UTF-8
