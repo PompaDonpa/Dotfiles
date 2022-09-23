@@ -215,3 +215,4 @@
 [rebase]
     instructionFormat = "[%an - %ar] %s"
     autoStash = true
+    

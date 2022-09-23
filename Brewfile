@@ -171,7 +171,7 @@ brew "readline" # Library for command-line editing
 brew "ripgrep" # Very fast file searcher
 brew "ruby" # Powerful, clean, object-oriented scripting language
 brew "shellcheck" # Diagnostics for shell sripts
-brew "spotifyd" # Spotify daemon
+brew "spotifyd" # Spotify daemon - Broken with python 3.10 , use <= 3.9
 brew "sqlite" # Command-line interface for SQLite
 brew "tig" # Git repository browser
 brew "tmux" # Terminal multiplexer
