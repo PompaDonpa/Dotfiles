@@ -175,16 +175,17 @@
     # do not warn about missing whitespace at EOF
     whitespace = nowarn
 [core]
+    # pager = diff-so-fancy | less --tabs=4 -RFX
     excludesfile = ~/.gitignore_global
-    pager = diff-so-fancy | less --tabs=4 -RFX
     editor = code
+    pager = delta
     whitespace = cr-at-eol
 [delta]
     navigate = true
     light = false
     side-by-side = true
-    features = mantis-shrimp
-    features = unobtrusive-line-numbers decorations
+    features = pompa-donpa
+    # features = unobtrusive-line-numbers decorations
     whitespace-error-style = 22 reverse
     syntax-theme = base16-256
 [delta "unobtrusive-line-numbers"]

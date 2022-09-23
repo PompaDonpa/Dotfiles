@@ -335,3 +335,27 @@
     merge-conflict-ours-diff-header-decoration-style = "#434C5E" box
     merge-conflict-theirs-diff-header-style = "#F1FA8C" bold
     merge-conflict-theirs-diff-header-decoration-style = "#434C5E" box
+
+    [delta "pompa-donpa"]
+    commit-decoration-style = ol "#7536ff"
+    commit-style = "#200078"
+    file-decoration-style = none
+    file-style = omit
+    hunk-header-decoration-style = "#cfd6ff" ul
+    hunk-header-file-style = "#F1FA8C"
+    hunk-header-line-number-style = "#ffd21a"
+    hunk-header-style = file line-number syntax
+    light = true
+    line-numbers = true
+    line-numbers-left-format = "{nm:>4}┊ "
+    line-numbers-left-style = "#ffc0c0"
+    line-numbers-minus-style = "#780000 " #780000 #ff38b6
+    line-numbers-plus-style = "#00e0c2"
+    line-numbers-right-format = "{np:>1}┊ "
+    line-numbers-right-style = "#a0efa0"
+    line-numbers-zero-style = "#cccccc"
+    minus-emph-style = bold "#ff3838" "#ffe3f7"
+    minus-style = syntax "#FF5555"
+    plus-emph-style = "#008a81" bold "#00ffbf"
+    plus-style = syntax "#cffff3"
+    syntax-theme = Github
