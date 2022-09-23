@@ -1,4 +1,40 @@
 git:
   paging:
     colorArg: always
-    pager: delta --features=mantis-shrimp-lite --paging=never
+gui:
+  theme:
+    lightTheme: false # For terminals with a light background
+    # activeBorderColor: 
+    # - '#a1cca5'
+    inactiveBorderColor: 
+    - '#fbf8cc'
+    # - '#e9d985' 
+    optionsTextColor: 
+    - '#6fffe9'
+    selectedLineBgColor: 
+    - '#252525'
+    # selectedRangeBgColor: 
+    # - '#00296b'
+    # cherryPickedCommitBgColor: 
+    # - '#c4fff9'
+    # cherryPickedCommitFgColor: 
+    # - '#00509d'
+    # unstagedChangesColor: 
+    # - '#d7263d'
+  showIcons: true
+  expandFocusedSidePanel: true
+  branchColors:
+    'docs': '#11aaff'
+    'main': '#00509d' 
+    '*': '#ffb703'
+  
+  authorColors:
+    'Daniel Naranjo': '#1f7a8c'
+    'PompaDonpa': '#219ebc' 
+    'KiloSculptor': '#8ecae6'
+    '*': '#b8c0ff'
+
+# '#aaf683'
+# '#4974a5'
+# '#f7fff7'
+# '#586ba4'
