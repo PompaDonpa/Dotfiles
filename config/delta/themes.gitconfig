@@ -345,7 +345,7 @@
     hunk-header-file-style = "#F1FA8C"
     hunk-header-line-number-style = "#ffd21a"
     hunk-header-style = file line-number syntax
-    light = true
+    light = false
     line-numbers = true
     line-numbers-left-format = "{nm:>4}┊ "
     line-numbers-left-style = "#ffc0c0"
@@ -353,9 +353,9 @@
     line-numbers-plus-style = "#00e0c2"
     line-numbers-right-format = "{np:>1}┊ "
     line-numbers-right-style = "#a0efa0"
-    line-numbers-zero-style = "#cccccc"
+    line-numbers-zero-style = bold "#999999"
     minus-emph-style = bold "#ff3838" "#ffe3f7"
-    minus-style = syntax "#FF5555"
+    minus-style = syntax "#ffc0c0" 
     plus-emph-style = "#008a81" bold "#00ffbf"
     plus-style = syntax "#cffff3"
     syntax-theme = Github

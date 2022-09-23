@@ -5,6 +5,9 @@ setopt prompt_subst
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats ' %b'
 
+# SYMBOLS
+# 𓊙 𓅫 𓍬 𓏗 𓍴 ๛ 𒄬 ▻ ╾ ◖ ☘
+
 # PROMPT_SYMBOL=' 𐏁'
 PROMPT_SYMBOL='⊱'
 
