@@ -12,6 +12,7 @@
 .ssh/id_ecdsa
 .ssh/id_ed25519
 .ssh/id_rsa
+.uber
 
 #█▓▒░ Config
 config/nvim/spell
