@@ -22,5 +22,8 @@ cd ~/.local/share/fonts
 curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 fc-cache -f -v  
 
+title "Cloning Tplug for tmux"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 title "Installing Spotify CLI for tmux"
 pip3 install --upgrade spotify-cli

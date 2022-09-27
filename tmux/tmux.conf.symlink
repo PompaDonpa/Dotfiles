@@ -267,6 +267,7 @@ set -g @kripto_ttl 300
 #*2source-file "$DOTFILES/tmux/themes/bubbles.conf"
 #*3source-file "$DOTFILES/tmux/themes/catpuccin.conf"
 
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install Plugins with Ctrl + a + I
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
