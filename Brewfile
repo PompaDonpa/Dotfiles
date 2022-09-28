@@ -103,6 +103,7 @@ brew "highlight" # Code syntax highlighting
 brew "htop" # A top alternative
 brew "httpie" # User-friendly cURL replacement (command-line HTTP client)
 brew "icu4c" # C/C++ and Java libraries for Unicode and globalization
+brew "imagemagic" # Tools and libraries to manipulate images in many formats
 brew "jpeg" # Image manipulation library
 brew "jpeg-turbo" # JPEG image codec that aids compression and decompression
 brew "jq" # Work with JSON files in shell scripts

@@ -18,10 +18,10 @@ function toast() {
 }
 
 # Opens the terminal explorer
-function xpr() {
-  out=$(broot "$@")
-  [[ $? = 123 ]] && cd "$out"
-}
+# function xpr() {
+#   out=$(broot "$@")
+#   [[ $? = 123 ]] && cd "$out"
+# }
 
 # Creates a new video from .mov to .mp4 
 # $1 [ Original video name/location ]
@@ -50,7 +50,7 @@ function copyPrev() {
     osascript -e 'activate application "Preview"' -e 'tell application "System Events"' -e 'keystroke "c" using command down'  -e 'click button "Delete" of sheetter group 1 of standard window "PVWindow' -e 'end tell'
 }
 
-alias f1='xpr'
+alias f1='br'
 alias f2='mp4'
 alias f3='rec'
 alias f4='prtscn'
