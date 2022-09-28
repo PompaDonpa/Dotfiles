@@ -34,7 +34,8 @@
     conf = "!git s | grep ^U"
 
     l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-
+    ll = log --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%Creset by %C(bold blue)%an%Creset %C(bold blue)<%ae>%Creset"
+    
     # show what I did today
     day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
 

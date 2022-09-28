@@ -21,15 +21,14 @@ alias .....="cd ../../../.."
 
 alias sl=ls
 alias al=la
-alias l="exa -abghHliS"
-alias lt="exa --tree --level=2 | bat"
-alias la="ls -AF ${colorflag}"
-alias ls="ls ${colorflag}"        # Compact view, show colors
-alias ll="exa -lFh"
-alias l1="ls -1Fh ${colorflag}"
-alias lld="ls -1 | grep ^d"
+alias l="exa -abghHliST -L=1  -s=extension --git --group-directories-first"
+alias la="exa -aF --color=auto --group-directories-first"
+alias ls="gls --hyperlink=auto --color"
+alias lt="exa --tree --level=2"
+alias ll="exa -lFh --icons"
+alias l1="exa -1 --icons --group-directories-first"
 alias lsg="exa -ahlT -L=1  -s=extension --git --group-directories-first"
-alias ldir="ls -d */"
+alias ldir="exa -d */"
 alias rmf="rm -rf"
 
 #█▓▒░ In case i forget how to clear/exit
@@ -44,8 +43,8 @@ alias prev='fzf --preview "bat --style=numbers --theme=Dracula --color=always --
 alias grep='grep --color=auto'
 alias gradmin='dscacheutil -q group -a name admin'
 alias grstaff='dscacheutil -q group -a name staff'
-alias df='df -h | bat --theme=Dracula' # disk free, in Gigabytes, not bytes
-alias du='du -h -c | bat' # calculate disk usage for a folder
+alias df='df -h' # disk free, in Gigabytes, not bytes
+alias du='du -h -c' # calculate disk usage for a folder
 
 #█▓▒░ Scripts
 alias debian='~/Dotfiles/scripts/debian'
@@ -81,7 +80,7 @@ alias gfr='git forgit rebase'
 alias gfb='git forgit blame'
 alias gfx='git forgit fixup'
 
-alias glg='lazygit'
+alias lg='lazygit'
 alias gpl='git pull'
 alias gpm='git checkout main && git pull origin main'
 alias gps='git push'
@@ -241,4 +240,4 @@ alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
-alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' ~/.zplug/repos/wfxr/forgit/forgit.plugin.zsh"
+alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' ~/.zplug/repos/wfxr/forgit/forgit.plugin.zsh && unalias grc"

@@ -23,12 +23,13 @@ if [ -f "$zpath" ]; then
     source "$zpath"
 fi
 
+# @Deprecated Exa for colors && gls + kitty
 # Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color"
-else # macOS `ls`
-    colorflag="-G"
-fi
+# if ls --color > /dev/null 2>&1; then # GNU `ls`
+#     colorflag="--color"
+# else # macOS `ls`
+#     colorflag="-G"
+# fi
 
 #█▓▒░ Themes FZF ░▒▓█
 

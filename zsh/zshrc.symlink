@@ -28,8 +28,5 @@ if [[ -r "$DOTFILES/scripts/setenv.sh" ]]; then
   source "$DOTFILES/scripts/setenv.sh"
 fi
 
-#ZSH_DISABLE_COMPFIX=true
-
 #█▓▒░ Load Configs 00 - 21 ░▒▓█
-
 for config (~/Dotfiles/zsh/config/*.zsh) source $config

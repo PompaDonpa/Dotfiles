@@ -40,7 +40,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # Pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"
@@ -59,7 +58,7 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export ANDROID_NDK=~/ANDROID/android-ndk
 export ANDROID_NDK_HOME=~/ANDROID/android-ndk
 
-export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin:$FORGIT_INSTALL_DIR/bin
+export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin:$FORGIT_INSTALL_DIR/bin:$PNPM_HOME
 #::$HOME/.dotfiles/share/zsh/plugins/forgit/bin:$HOME/.dotfiles/share/zsh/plugins/git-fuzzy/bin
 
 
