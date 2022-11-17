@@ -6,9 +6,23 @@
 #█▓▒░ Preferred text editor ░▒▓█
 local nvimdir=$(command -v nvim)
 local codedir=$(command -v code)
-export EDITOR="$nvimdir"
-export VISUAL="$codedir"
-export GIT_EDITOR="$nvimdir"
+local lunadir="$HOME/.local/bin/lvim"
+export GIT_EDITOR="$lunadir"
+
+#█▓▒░ Editors
+if [[ -z "$EDITOR" ]]; then
+  export EDITOR="$lunadir"
+fi
+if [[ -z "$VISUAL" ]]; then
+  export VISUAL="$codedir"
+fi
+
+#█▓▒░ Clipboard
+if [[ "$(uname)" == "Linux" ]]; then
+  export CLIPBOARD=xclip
+else
+  export CLIPBOARD=pbcopy
+fi
 
 #█▓▒░ Custom Config ░▒▓█
 export DISPLAY='localhost:0.0'
@@ -28,6 +42,7 @@ export LANGUAGE=en_US.UTF-8
 export LESSCHARSET=utf-8
 
 #█▓▒░ Custom paths ░▒▓█
+export BASE16_HOME="$HOME/.zplug/repos/chriskempson/base16-shell/scripts"
 export BAT_CONFIG_PATH="$DOTFILES/config/bat"
 export GOPATH=$HOME/go-code
 export GOBIN=$GOPATH/bin
@@ -58,7 +73,7 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export ANDROID_NDK=~/ANDROID/android-ndk
 export ANDROID_NDK_HOME=~/ANDROID/android-ndk
 
-export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin:$FORGIT_INSTALL_DIR/bin:$PNPM_HOME
+export PATH=$PATH:$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/tools/bin:$FORGIT_INSTALL_DIR/bin:$PNPM_HOME:$BASE16_HOME
 #::$HOME/.dotfiles/share/zsh/plugins/forgit/bin:$HOME/.dotfiles/share/zsh/plugins/git-fuzzy/bin
 
 

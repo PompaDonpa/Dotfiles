@@ -10,3 +10,15 @@ function backup() {
     echo "Backed Up" | figlet -f digital
     echo
 }
+
+#█▓▒░ Changes Directories on LazyGit Exit
+function lg() {
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+        cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+        rm -rf $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi 
+}

@@ -21,3 +21,5 @@ dotfiles::print() {
     echo -n "$content"
     echo -n "%{%b%f%}"
 }
+
+echo '\e[5 q'

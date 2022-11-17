@@ -68,7 +68,6 @@ function ftpane() {
 }
 
 #█▓▒░ Alias Tmux ░▒▓█
-
 alias tsp='ftpane'
 alias tkl='tmuxkillf'
 alias tss='fs'

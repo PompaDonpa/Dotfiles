@@ -94,9 +94,8 @@ function fshow_preview() {
             --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
                 --header "enter to view, alt-y to copy hash" \
                 --bind "enter:execute:$_viewGitLogLine   | less -R" \
-                --bind "alt-y:execute:$_gitLogLineToHash | pbcopy"
+                --bind "alt-y:execute:$_gitLogLineToHash | $CLIPBOARD"
 }
-
 
 
 # ░░▒▒▓▓▓████▓▓▓▒▒░░
@@ -144,7 +143,6 @@ fzf-git-checkout() {
 }
 
 #█▓▒░ Alias Fuzzy ░▒▓█
-
 alias afb='gch'
 alias gdf='gitdiff'
 alias fgb='fzf-git-branch'

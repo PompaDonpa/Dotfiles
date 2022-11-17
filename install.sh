@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# DotFiles Inspiration
-# https://dotfiles.github.io/inspiration/
-# Dotfiles colors & guide
+#█▓▒░ Dotfiles colors & guide ░▒▓█
 # https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
+
+#█▓▒░ DotFiles Inspiration ░▒▓█
+# https://dotfiles.github.io/inspiration/
 
 DOTFILES="$(pwd)"
 COLOR_GRAY="\033[1;38;5;243m"
@@ -102,12 +103,11 @@ setup_symlinks() {
 setup_terminfo() {
     title "Configuring terminfo"
 
-    info "adding tmux.terminfo"
+    info "Adding tmux.terminfo"
     sudo tic -x "~/Dotfiles/resources/tmux.terminfo"
 
-    info "adding xterm-256color-italic.terminfo"
+    info "Adding xterm-256color-italic.terminfo"
     sudo tic -x "~/Dotfiles/resources/xterm-256color-italic.terminfo"
-    
 }
 
 setup_homebrew() {
@@ -151,6 +151,8 @@ setup_git() {
     git config -f ~/.gitconfig-local user.email "${email:-$defaultEmail}"
     git config -f ~/.gitconfig-local github.user "${github:-$defaultGithub}"
 
+    # █▓▒░ @Deprecated [osxkeychain(annoying), store(dangerous)]
+    
     # if [[ "$(uname)" == "Darwin" ]]; then
     #     git config --global credential.helper "osxkeychain"
     # else
@@ -302,7 +304,6 @@ finalize() {
     read user_nvim
 
     # autoload - error -> https://github.com/startup-nvim/startup.nvim/issues/23 
-
 }
 
 

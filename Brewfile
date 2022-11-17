@@ -10,7 +10,7 @@ if OS.mac?
     brew "trash" # rm, but put in the trash rather than completely delete
     brew "screenresolution" # Get, set, and list display resolution
     
-    
+    # Casks
     cask "appcleaner" # Application uninstaller
     cask "betterzip" # Utility to create and modify archives
     cask "caffeine" # Utility that prevents the system from going to sleep
@@ -19,7 +19,6 @@ if OS.mac?
     cask "doubletwist" # doubleTwist Sync is a new, lightweight app for your PC to sync your music, videos and pictures over USB or over WiFi.
     cask "imageoptim" # A tool to optimize images
     cask "iterm2" # Terminal emulator as alternative to Apple's Terminal app
-    cask "qlcolorcode" # QuickLook plug-in that renders source code with syntax highlighting
     cask "qlstephen" # QuickLook plugin that lets you view plain text files without a file extension
     cask "qlmarkdown" # QuickLook generator for Markdown files
     cask "quicklook-json" # QuickLook plugin for JSON files
@@ -46,7 +45,6 @@ if OS.mac?
     cask "font-jetbrains-mono"
     cask "font-source-code-pro"
 elsif OS.linux?
-    brew "git-delta" # A better git diff
     brew "xclip" # Access to clipboard (similar to pbcopy/pbpaste)
 end
 
@@ -54,7 +52,7 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 
 # Packages
-brew "ant" # Java build tool
+# brew "ant" # Java build tool
 brew "autoconf" # Automatic configure script builder
 brew "asciinema" # Simple terminal recording
 brew "bat" # Better cat

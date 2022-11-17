@@ -29,15 +29,14 @@ config/lazygit/state.yml
 #█▓▒░ Vim
 vim/vim.symlink/spell/
 vim/vim.symlink/plugged/
-
-
-Brewfile.lock.json
-
-.netrwhist
-npm-debug.log
-
 plug.vim.old
 
+#█▓▒░ MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-
-
+#█▓▒░ General
+Brewfile.lock.json
+.netrwhist
+npm-debug.log

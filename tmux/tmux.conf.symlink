@@ -8,8 +8,7 @@
 #     ░██    ░██        ░██░░███████  ██   ░░██
 #     ░░     ░░         ░░  ░░░░░░░  ░░     ░░
 
-# shell
-
+#█▓▒░ Shell
 if-shell "[ $(uname) == 'Darwin' ]" {
     set -g default-command /opt/homebrew/bin/zsh
     set -g default-shell /opt/homebrew/bin/zsh
@@ -18,29 +17,25 @@ if-shell "[ $(uname) == 'Darwin' ]" {
     set -g default-shell /usr/bin/zsh
 }
 
-# screen mode
+#█▓▒░ Screen
 set -g default-terminal "screen-256color"
 
 # start with window 1 (instead of 0)
 set -g base-index 1
-
 # renumber windows after closing
 set -g renumber-windows on
-
 # start with pane 1
 set -g pane-base-index 1
-
 # remove esc delay
 set -sg escape-time 0
-
 # tmux display things in 256 colors
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
-
 # base16 shell color escape sequences
 set -g allow-passthrough 1
 
+#█▓▒░ Config
+# history
 set -g history-limit 20000
-
 # automatically renumber tmux windows
 set -g renumber-windows on
 
@@ -61,7 +56,6 @@ set -g visual-activity off
 # client connected to *that window*. Much more reasonable.
 setw -g aggressive-resize on
 
-
 # tile all windows
 unbind =
 bind = select-layout tiled
@@ -80,11 +74,11 @@ set-option -g automatic-rename-format ""
 #### Key Bindings ####
 ######################
 
-# Breaking a Pane Out to a New Window
+# breaking a Pane Out to a New Window
 bind-key b break-pane -d
 
 # source config file
-bind r source-file ~/.tmux.conf \; display-message "◖ᵔᴥᵔ◗ ♪ ♫   ~/.tmux.conf reloaded."
+bind r source-file ~/.tmux.conf \; display-message " ♫ ♪ ◖ᵔᴥᵔ◗ ♪ ♫   ~/.tmux.conf reloaded."
 
 # split window and fix path for tmux 1.9
 bind | split-window -h -c "#{pane_current_path}"
@@ -102,7 +96,7 @@ bind l select-pane -R
 bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 
-# Resize pane shortcuts
+# resize pane shortcuts
 bind -r H resize-pane -L 10
 bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
@@ -161,30 +155,46 @@ if-shell '[[ $(uname -s) = Linux ]]' {
     bind C-v run 'tmux set-buffer "$(xclip -o -sel clipboard)"; tmux paste-buffer'}
 
 
-# PLUGINS
+######################
+####    PLUGINS   ####
+######################
 # https://github.com/rothgar/awesome-tmux
 
-# TMUX-PLUGINS
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-open'
-set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'tmux-plugins/tmux-net-speed'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 set -g @plugin 'ofirgall/tmux-keyboard-layout'
 set -g @plugin 'thewtex/tmux-mem-cpu-load'
+set -g @plugin 'pwittchen/tmux-plugin-spotify'
 
-# KRIPTO
+# Pomodoro
+set -g @plugin 'olimorris/tmux-pomodoro-plus'
+set -g @pomodoro_start 'p'                  # Start a Pomodoro with tmux-prefix + p
+set -g @pomodoro_cancel 'P'                 # Cancel a Pomodoro with tmux-prefix key + P
+set -g @pomodoro_mins 25                    # The duration of the pomodoro
+set -g @pomodoro_break_mins 5               # The duration of the break after the pomodoro
+set -g @pomodoro_notifications 'on'        # Enable desktop notifications from your terminal
+set -g @pomodoro_sound 'on'                # Sound for desktop notifications (Run `ls /System/Library/Sounds` for a list of sounds to use on Mac)
+set -g @pomodoro_on "#[fg=#E03A3E]\ue001 "
+set -g @pomodoro_complete "#[fg=#C1D42F]\ue001 "
+
+# Network Speed
+set -g @plugin 'minhdanh/tmux-network-speed'
+set -g @network_speed_download_color '#[fg=#ff595e]'
+set -g @network_speed_upload_color '#[fg=#76c893]'
+
+# Kripto
+# set -g @kripto_id "bitcoin" # Nerfont \uf15a
 set -g @plugin 'vascomfnunes/tmux-kripto'
-set -g @kripto_id "ethereum"
+set -g @kripto_id "ethereum" # Nerfont \ufcb9
 set -g @krypto_round "true"
-set -g @kripto_ttl 300
+set -g @kripto_ttl 900
 
-
-# THEMES
+#█▓▒░ THEMES ░▒▓█
 # https://github.com/tmux-plugins/tpm
 # https://dev.to/andrenbrandao/terminal-setup-with-zsh-tmux-dracula-theme-48lm
 
@@ -193,79 +203,87 @@ set -g @kripto_ttl 300
 # https://github.com/o0th/tmux-nova/blob/master/Gallery.md
 # https://github.com/arcticicestudio/nord-tmux
 
-#dset -g @plugin 'dracula/tmux'
-#nset -g @plugin "arcticicestudio/nord-tmux"
-#%set -g @plugin 'o0th/tmux-nova'
-
-# NOVA
-
-#%set -g @nova-nerdfonts true
-#%set -g @nova-nerdfonts-left █▓▒░
-#%set -g @nova-nerdfonts-right ░▒▓█
-
-#%set -g @nova-segment-mode "#{?client_prefix,Ω,ω}"
-#%set -g @nova-segment-mode-colors "#50fa7b #282a36"
-
-#%set -g @nova-segment-whoami "daniel◑Uber"
-#%set -g @nova-segment-whoami-colors "#00889f #5b5b5b"
-
-#%set -g @nova-pane "#I#{?pane_in_mode, (งツ)ว #{pane_mode},} ¯\\\_(ツ)_/¯ #W"
-
-#%set -g @nova-segment-spotify "♪ #(sudo ~/.tmux/plugins/tmux-plugin-spotify/scripts/spotify_song_full.sh)"
-#%set -g @nova-segment-spotify-colors "#282a36 #f8f8f2"
-
-#%set -g @cpu_percentage_format "%5.1f%%"
-#%set -g @nova-segment-cpu " #(sudo ~/.tmux/plugins/tmux-cpu/scripts/cpu_percentage.sh)"
-#%set -g @nova-segment-cpu-colors "#282a36 #f8f8f2"
-
-#%set -g @cpu_temp_unit "C"
-#%set -g @cpu_temp_format "%3.0f"
-#%set -g @nova-segment-cpu-temp "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/cpu_temp.sh)"
-#%set -g @nova-segment-cpu-temp-colors "#282a36 #f8f8f2"
-
-#%set -g @ram_percentage_format "%5.1f%%"
-#%set -g @nova-segment-ram "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/ram_percentage.sh)"
-#%set -g @nova-segment-ram-colors "#282a36 #f8f8f2"
-
-#%set -g @gpu_percentage_format "%5.1f%%"
-#%set -g @nova-segment-gpu "﬙ #(sudo ~/.tmux/plugins/tmux-cpu/scripts/gpu_percentage.sh)"
-#%set -g @nova-segment-gpu-colors "#282a36 #f8f8f2"
-
-#%set -g @gpu_temp_unit "C"
-#%set -g @gpu_temp_format "%3.0f"
-#%set -g @nova-segment-gpu-temp "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/gpu_temp.sh)"
-#%set -g @nova-segment-gpu-temp-colors "#282a36 #f8f8f2"
-
-#%set -g @gram_percentage_format "%5.1f%%"
-#%set -g @nova-segment-gram "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/gram_percentage.sh)"
-#%set -g @nova-segment-gram-colors "#282a36 #f8f8f2"
-
-#%set -g @net_speed_interfaces "enp6s0"
-#%set -g @net_speed_format "↓ %10s - ↑ %10s"
-#%set -g @nova-segment-net "#(sudo ~/.tmux/plugins/tmux-net-speed/scripts/net_speed.sh)"
-#%set -g @nova-segment-net-colors "#282a36 #f8f8f2"
-
-## set -g @nova-segment-tmux-mem-cpu-load "#(sudo ~/.tmux/plugins/tmux-mem-cpu-load)"
-#%set -g @nova-segment-tmux-mem-cpu-load "OR"
-#nset -g @nova-segment-tmux-mem-cpu-load "Virginia"
-#%set -g @nova-segment-tmux-mem-cpu-load-colors "#b4d8df #ffd966"
-
-#%set -g @nova-segment-world "#(sudo ~/.tmux/plugins/tmux-world-clock/scripts/tmux_world_clock.sh)"
-#%set -g @nova-segment-world-colors "#cfe2f3 #444444"
-
-#%set -g @nova-segment-kripto "#(sudo ~/.tmux/plugins/tmux-kripto/scripts/kripto.sh)"
-#%set -g @nova-segment-kripto-colors "#e2f3cf #2d3029"
-
-#%set -g @nova-rows 1
-#%set -g @nova-segments-0-left "mode cpu net"
-#%set -g @nova-segments-0-right "kripto tmux-mem-cpu-load whoami"
-#%set -g @nova-segments-1-left "spotify tmux-mem-cpu-load"
-#%set -g @nova-segments-1-right "cpu ram cpu-temp gpu gram gpu-temp"
-
-# Themes
+# Local Themes
 #*1source-file "$DOTFILES/tmux/themes/default.conf"
 #*2source-file "$DOTFILES/tmux/themes/bubbles.conf"
 #*3source-file "$DOTFILES/tmux/themes/catpuccin.conf"
+
+#dset -g @plugin 'dracula/tmux'
+#nset -g @plugin "arcticicestudio/nord-tmux"
+set -g @plugin 'o0th/tmux-nova'
+
+#█▓▒░ Nova
+set -g @nova-nerdfonts true
+set -g @nova-nerdfonts-left \uE0B8
+set -g @nova-nerdfonts-right \uE0BA
+
+#█▓▒░ TOP LEFT ░▒▓█
+set -g @nova-segment-mode "#{?client_prefix,\ue24d,\ue22d}" 
+set -g @nova-segment-mode-colors "##FDB927 #62737A"
+
+set -g @nova-pane "#I#{?pane_in_mode, 敿 #{pane_mode},} 敄 #W"
+
+#█▓▒░ TOP RIGHT ░▒▓█
+set -g @nova-segment-pomodoro "#(~/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh)"
+set -g @nova-segment-pomodoro-colors "#30343f #640d14"
+
+set -g @nova-segment-kripto "\ufcb9#(~/.tmux/plugins/tmux-kripto/scripts/kripto.sh)"
+set -g @nova-segment-kripto-colors "#1b2021 #ff9505"
+
+set -g @nova-segment-whoami "\ue0bbDN\ue0bb"
+set -g @nova-segment-whoami-colors "#f5d491 #081c15"
+
+#█▓▒░ BOTTOM LEFT ░▒▓█
+set -g @nova-segment-spotify "♪ #(sudo ~/.tmux/plugins/tmux-plugin-spotify/scripts/spotify_song_full.sh)\t"
+set -g @nova-segment-spotify-colors "#282a36 #f8f8f2"
+
+set -g @nova-segment-world "𝚂𝙵\ue0b9#(TZ=\"America/Los_Angeles\" date +%%H:%%M:%%S)\ue0b9\uf0ac"
+set -g @nova-segment-world-colors "#282a36 #37e7e7"
+
+#█▓▒░ BOTTOM RIGHT ░▒▓█
+set -g @cpu_percentage_format "%5.1f%%"
+set -g @nova-segment-cpu " #(~/.tmux/plugins/tmux-cpu/scripts/cpu_percentage.sh)"
+set -g @nova-segment-cpu-colors "#282a36 #c7f9cc"
+
+set -g @ram_percentage_format "%5.1f%%"
+set -g @nova-segment-ram "\uf2db#(~/.tmux/plugins/tmux-cpu/scripts/ram_percentage.sh)"
+set -g @nova-segment-ram-colors "#282a36 #57cc99"
+
+set -g @nova-segment-net "\uf9c4#(~/.tmux/plugins/tmux-network-speed/network_speed.sh)"
+set -g @nova-segment-net-colors "#282a36 #ffea00"
+
+#█▓▒░ Does NOT wrok on M1
+set -g @cpu_temp_unit "C"
+set -g @cpu_temp_format "%3.0f"
+set -g @nova-segment-cpu-temp "#(~/.tmux/plugins/tmux-cpu/scripts/cpu_temp.sh)"
+set -g @nova-segment-cpu-temp-colors "#282a36 #80ed99"
+
+set -g @gpu_percentage_format "%5.1f%%"
+set -g @nova-segment-gpu "﬙#(sudo ~/.tmux/plugins/tmux-cpu/scripts/gpu_percentage.sh)"
+set -g @nova-segment-gpu-colors "#282a36 #f8f8f2"
+
+set -g @gpu_temp_unit "C"
+set -g @gpu_temp_format "%3.0f"
+set -g @nova-segment-gpu-temp "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/gpu_temp.sh)"
+set -g @nova-segment-gpu-temp-colors "#282a36 #f8f8f2"
+
+set -g @gram_percentage_format "%5.1f%%"
+set -g @nova-segment-gram "#(sudo ~/.tmux/plugins/tmux-cpu/scripts/gram_percentage.sh)"
+set -g @nova-segment-gram-colors "#282a36 #f8f8f2"
+
+set -g @nova-segment-tmux-mem-cpu-load "#(~/.tmux/plugins/tmux-mem-cpu-load)"
+set -g @nova-segment-tmux-mem-cpu-load-colors "#b4d8df #ffd966"
+#░▒▓█
+
+#%set -g @nova-segment-tmux-local-devpod "OR"
+#nset -g @nova-segment-tmux-local-devpod "Virginia"
+
+#█▓▒░ NOVA ROWS ░▒▓█
+set -g @nova-rows 1
+set -g @nova-segments-0-left "mode"
+set -g @nova-segments-0-right "pomodoro kripto whoami"
+set -g @nova-segments-1-left "spotify world"
+set -g @nova-segments-1-right "cpu ram net"
 
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install Plugins with Ctrl + a + I

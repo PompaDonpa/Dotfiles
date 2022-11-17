@@ -3,7 +3,6 @@
 # ░░▒▒▓▓▓████▓▓▓▒▒░░
 
 #█▓▒░ fd - cd to selected directory
-
 function fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -12,17 +11,16 @@ function fd() {
 }
 
 #█▓▒░ Search in your command history and execute selected command
-
 function fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
+#█▓▒░ Base16 Interactive theme selector
 function b16() {
-  eval $( (ls ~/.zplug/repos/chriskempson/base16-shell/scripts) | fzf +s --tac | sed 's/ *[0-9]* *//')
+  sh $( (ls ~/.zplug/repos/chriskempson/base16-shell/scripts) | fzf +s --tac)
 }
 
 #█▓▒░ Chrome history
-
 function ch() {
   local cols sep
   cols=$(( COLUMNS / 3 ))
@@ -38,13 +36,11 @@ function ch() {
 }
 
 #█▓▒░ PORT
-
 function whatsonport () { 
   echo "$(lsof -n -i4TCP:$1)"
 }
 
 #█▓▒░ VIM
-
 function plugvim() {
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'

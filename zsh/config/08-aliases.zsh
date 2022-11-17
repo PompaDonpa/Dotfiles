@@ -80,7 +80,7 @@ alias gfr='git forgit rebase'
 alias gfb='git forgit blame'
 alias gfx='git forgit fixup'
 
-alias lg='lazygit'
+alias lz='lazygit'
 alias gpl='git pull'
 alias gpm='git checkout main && git pull origin main'
 alias gps='git push'
@@ -94,7 +94,10 @@ alias gcane='git commit --amend --no-edit'
 alias gcfdx='git clean -fdx'
 alias unstage='git unstage'
 alias stash='gaa; git stash'
-alias stacl='git stash clear'
+alias gsap="git stash apply $1"
+alias gscl='git stash clear'
+alias gsdp="git stash drop $1"
+alias gssv='git stash save'
 alias pop='git stash pop'
 
 #█▓▒░ Git aliases Stacking Diffs
@@ -118,9 +121,18 @@ alias ghpub='gh repo create --public --source=. --remote=upstream --push'
 alias af='arc flow'
 alias ara='arc amend'
 alias arb='arc branch'
+alias are='arc export'
+alias arh='arc help'
+alias arl='arc land'
 alias arbl='arc bland'
 alias arco='arc cover'
 alias arci='arc commit'
+alias arho='arc hotfix'
+alias arli='arc lint'
+alias arls='arc list'
+alias arcas='arc cascade'
+alias archc='arc cascade --halt-on-conflict'
+alias arcsy='arc sync --dependencies'
 
 alias ard='arc diff'
 alias ardc='arc diff --create'
@@ -131,18 +143,13 @@ alias ardp='arc diff --preview' # Only create a diff, which you may later attach
 alias ardo='arc diff --only' # Only generate a diff, without running lint, unit tests, or other auxiliary steps.
 alias ardrev='arc diff --reviewers' # Adds reviewers, removes plan changes tag
 
-alias are='arc export'
-alias arh='arc help'
-alias arho='arc hotfix'
-alias arl='arc land'
-alias arli='arc lint'
-alias arls='arc list'
 
 #█▓▒░ SuperPumped ░▒▓█
 alias ics='cd ~/ANDROID'  # Ice Cream Sandwich
 alias noche='sudo git config --system core.untrackedCache true'
 
 #█▓▒░ ANDROID  ░▒▓█
+alias eos='scrcpy'
 alias emls='adb devices'
 alias egsm='adb shell getprop | grep "gsm"' 
 alias eiso='adb shell su 0 setprop gsm.sim.operator.iso-country us' # https://www.mcc-mnc.com/
@@ -220,9 +227,10 @@ alias nvimrc="nvim ~/.config/nvim/init.vim"
 #█▓▒░ Editor's Choice ░▒▓█
 alias zshrc="$EDITOR ~/.zshrc"
 alias bashrc="$EDITOR ~/.bashrc"
-alias enva="$EDITOR ~/Dotfiles/zsh/config/01-environment.zsh"
-alias alia="$EDITOR ~/Dotfiles/zsh/config/08-aliases.zsh"
-# alias prompt="$EDITOR ~/Dotfiles/zsh/config/20-prompt.zsh"
+alias enva="$EDITOR $DOTFILES/zsh/config/01-environment.zsh"
+alias alia="$EDITOR $DOTFILES/zsh/config/08-aliases.zsh"
+# alias prompt="$EDITOR $DOTFILES/zsh/config/20-prompt.zsh"
+
 #https://github.com/TomAnthony/itermocil
 # alias opt='itermocil'  # Kitty seems 2b better
 
@@ -233,6 +241,8 @@ alias alia="$EDITOR ~/Dotfiles/zsh/config/08-aliases.zsh"
 # Shell Tips
 # https://stackoverflow.com/questions/11065077/the-eval-command-in-bash-and-its-typical-uses
 
+alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' ~/.zplug/repos/wfxr/forgit/forgit.plugin.zsh && unalias grc"
+
 #█▓▒░ LowLevel ░▒▓█
 alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 
@@ -240,4 +250,3 @@ alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
-alias fixgrc="sudo sed -i -r 's/:-grc/:-grcm/g' ~/.zplug/repos/wfxr/forgit/forgit.plugin.zsh && unalias grc"
